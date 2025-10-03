@@ -2,9 +2,9 @@ name: Playwright Tests with Testomatio Reporter
 
 on:
     push:
-        branches: [master, main]
+        branches: [main]
     pull_request:
-        branches: [master, main]
+        branches: [main]
     workflow_dispatch:
 
 permissions:
@@ -67,7 +67,7 @@ jobs:
     deploy-reports:
         needs: test
         runs-on: ubuntu-latest
-        if: always()
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
 
         environment:
             name: github-pages

@@ -1,0 +1,60 @@
+name: Simple Test Run
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+    workflow_dispatch:
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        container:
+            image: mcr.microsoft.com/playwright:v1.55.1-jammy
+        env:
+            TESTOMATIO: ${{ secrets.TESTOMATIO }}
+            TESTOMATIO_URL: ${{ secrets.TESTOMATIO_URL }}
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "18"
+                  cache: "npm"
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Run Mixed Projects Tests
+              run: npm run test:mixed-projects
+              if: always()
+
+            - name: Upload Test Results
+              uses: actions/upload-artifact@v4
+              if: always()
+              with:
+                  name: test-results-simple
+                  path: |
+                      e2e-examples/playwright-report-mixed-projects/
+                      test-results/
+                  retention-days: 7
+
+            - name: Test Summary
+              if: always()
+              run: |
+                  echo "## 🎯 Mixed Projects Test Summary" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "**Date:** $(date)" >> $GITHUB_STEP_SUMMARY
+                  echo "**Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+                  echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "### 📊 Test Results:" >> $GITHUB_STEP_SUMMARY
+                  echo "- ✅ setup-core → core-api tests" >> $GITHUB_STEP_SUMMARY
+                  echo "- ✅ setup-clinic → clinic-api tests" >> $GITHUB_STEP_SUMMARY
+                  echo "- 🔄 Parallel execution with 6 workers" >> $GITHUB_STEP_SUMMARY
+                  echo "- 📈 Testomatio Reporter integration" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "📥 Download artifacts to view detailed HTML reports" >> $GITHUB_STEP_SUMMARY
