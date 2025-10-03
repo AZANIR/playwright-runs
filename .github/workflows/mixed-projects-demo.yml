@@ -1,0 +1,58 @@
+name: Mixed Projects Demo
+
+on:
+    workflow_dispatch:
+    schedule:
+        - cron: "0 */6 * * *" # Every 6 hours
+
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+jobs:
+    mixed-projects-demo:
+        runs-on: ubuntu-latest
+        container:
+            image: mcr.microsoft.com/playwright:v1.46.1-noble
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "18"
+                  cache: "npm"
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Run Mixed Projects (Client Scenario)
+              run: npm run test:mixed-projects
+              env:
+                  TESTOMATIO: ${{ secrets.TESTOMATIO }}
+                  TESTOMATIO_URL: ${{ secrets.TESTOMATIO_URL }}
+
+            - name: Generate Summary Report
+              run: |
+                  echo "# 🎯 Mixed Projects Test Summary" > summary.md
+                  echo "" >> summary.md
+                  echo "**Date:** $(date)" >> summary.md
+                  echo "**Workflow:** Mixed Projects Demo" >> summary.md
+                  echo "" >> summary.md
+                  echo "## 📊 Test Execution:" >> summary.md
+                  echo "- ✅ setup-core → core-api tests" >> summary.md
+                  echo "- ✅ setup-clinic → clinic-api tests" >> summary.md
+                  echo "- 🔄 Parallel execution across projects" >> summary.md
+                  echo "- 📈 Testomatio Reporter integration" >> summary.md
+
+            - name: Upload Mixed Projects Report
+              uses: actions/upload-artifact@v4
+              if: always()
+              with:
+                  name: mixed-projects-demo
+                  path: |
+                      e2e-examples/playwright-report-mixed-projects/
+                      summary.md
+                  retention-days: 7

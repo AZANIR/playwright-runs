@@ -1,82 +1,59 @@
-This repo contains **Playwright tests in TypeScript** with Testomat.io plugins
+# Playwright Tests with TESTOMATIO Reporter
 
-# Installation
+This repository demonstrates **mixed project runs** for testing Testomatio Reporter with parallel execution scenarios.
 
-This is a playground for your first steps in testing, so instead of installing it from NPM it is recommended to clone it from repo instead.
+## 🚀 Quick Start
 
-1) Clone this repository
+```bash
+# Install dependencies
+npm install
 
-```
-git clone git@github.com:testomatio/examples.git && cd examples/playwright
-```
-
-2) Install dependencies via npm:
-
-```
-npm i
-```
-
-2.1) Run tests to check if they work (via npm):
-
-```
-npm run test:e2e
+# Run different test scenarios
+npm run test:e2e-examples          # E2E tests with local server
+npm run test:smoke-examples        # Smoke tests
+npm run test:parallel-examples     # Parallel workers + browsers  
+npm run test:mixed-projects        # Mixed projects (like client)
 ```
 
-2.2) Run only smoke tests (via npm):
+## 📊 Test Scenarios
 
-```sh
-npm run test:smoke-examples
+### 🎯 Mixed Projects (Client Scenario)
+Simulates client's situation with **2 separate projects** in one run:
+- `setup-core` → `core-api` tests (Business logic)
+- `setup-clinic` → `clinic-api` tests (Medical operations)
+
+### ⚡ Parallel Examples  
+Tests with parallel workers and multiple browsers:
+- 4 workers running simultaneously
+- Chromium + Firefox browsers
+- Different test timing for parallel demonstration
+
+## 🔧 GitHub Actions
+
+### Workflows:
+- **Playwright Tests** - Full test suite with GitHub Pages deployment
+- **Mixed Projects Demo** - Focused mixed projects testing
+
+### Setup:
+1. Add `TESTOMATIO` secret in repository settings
+2. Enable GitHub Pages in repository settings
+3. Workflows run automatically on push/PR
+
+## 📈 Reports
+
+- **Live Reports**: Available on GitHub Pages after workflow completion
+- **Local Reports**: `npx playwright show-report [report-folder]`
+- **Testomatio Integration**: Reports sent to Testomat.io with API key
+
+## 🏗️ Structure
+
 ```
-
-2.3) Run only e2e tests (via npm):
-
-```sh
-npm run test:e2e-examples
+e2e-examples/
+├── mixed-tests/           # Parallel workers tests
+├── mixed-projects/        # Separate projects tests
+│   ├── core-api/         # Core business logic
+│   ├── clinic-api/       # Medical operations  
+│   └── setups/           # Project setup tests
+├── e2e-tests/            # Original E2E tests
+└── smoke-tests/          # Smoke tests
 ```
-
-This will install Playwright with puppeteer & Testomat.io reporter
-
-## Loading Tests to Testomat.io
-
-1. Create empty project in Testomat.io
-2. Obtain API key from Testomat.io
-2. Run `npx check-tests` to upload tests data into testomat.io. Pass api key as `TESTOMATIO` environment variable:
-
-```
-TESTOMATIO={apiKey} npx check-tests@latest Playwright "**/*{.,_}{test,spec,cy}.ts" --typescript
-```
-
-> **Environment variables** It is recommended to store Testomatio API Key as environment variable and never save it in the source code. Set them directly when running tests or use [dotenv](https://www.npmjs.com/package/dotenv) package to save environment variable in a file and load them for tests.
-
-## Publishing Test Results to Testomat.io (all available tests)
-
-Get API key from a project in Testomat.io and set it as environment variable `TESTOMATIO`:
-
-```
-TESTOMATIO={apiKey} npx playwright test
-```
-
-_or only smoke tests:_
-```
-TESTOMATIO={key} npx playwright test --config e2e-examples/playwright-smoke.config.ts
-```
-
-### Configuration
-
-Testomatio repoter is enabled in `playwright.config.ts`:
-
-```js
-reporter: [
-  ['list'],
-  ['@testomatio/reporter/lib/adapter/playwright.js', {
-    apiKey: process.env.TESTOMATIO,
-  }]
-],
-```
-
-### Pay attention
-
-> [!WARNING]
-> Two tests has a "FAIL" status... to fix it, see the instructions in the TODO section in files 
-> * => e2e-examples/e2e-tests/1-getting-started.spec.ts
-> * => e2e-examples/e2e-tests/2-actions.spec.ts

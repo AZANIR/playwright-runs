@@ -1,0 +1,140 @@
+name: Playwright Tests with Testomatio Reporter
+
+on:
+    push:
+        branches: [master, main]
+    pull_request:
+        branches: [master, main]
+    workflow_dispatch:
+
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+concurrency:
+    group: "pages"
+    cancel-in-progress: false
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        container:
+            image: mcr.microsoft.com/playwright:v1.46.1-noble
+        env:
+            TESTOMATIO: ${{ secrets.TESTOMATIO }}
+            TESTOMATIO_URL: ${{ secrets.TESTOMATIO_URL }}
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "18"
+                  cache: "npm"
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Run E2E Examples Tests
+              run: npm run test:e2e-examples
+
+            - name: Run Smoke Examples Tests
+              run: npm run test:smoke-examples
+
+            - name: Run Parallel Tests
+              run: npm run test:parallel-examples
+
+            - name: Run Mixed Projects Tests
+              run: npm run test:mixed-projects
+
+            - name: Upload Playwright Reports
+              uses: actions/upload-artifact@v4
+              if: always()
+              with:
+                  name: playwright-reports
+                  path: |
+                      e2e-examples/playwright-report-parallel/
+                      e2e-examples/playwright-report-mixed-projects/
+                      test-results/
+                  retention-days: 30
+
+    deploy-reports:
+        needs: test
+        runs-on: ubuntu-latest
+        if: always()
+
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+
+        steps:
+            - name: Download artifacts
+              uses: actions/download-artifact@v4
+              with:
+                  name: playwright-reports
+                  path: ./reports
+
+            - name: Create index page
+              run: |
+                  mkdir -p gh-pages
+                  cat > gh-pages/index.html << 'EOF'
+                  <!DOCTYPE html>
+                  <html>
+                  <head>
+                      <title>Playwright Test Reports</title>
+                      <style>
+                          body { font-family: Arial, sans-serif; margin: 40px; }
+                          .report-card { 
+                              border: 1px solid #ddd; 
+                              border-radius: 8px; 
+                              padding: 20px; 
+                              margin: 20px 0; 
+                              background: #f9f9f9; 
+                          }
+                          h1 { color: #333; }
+                          a { color: #0066cc; text-decoration: none; }
+                          a:hover { text-decoration: underline; }
+                      </style>
+                  </head>
+                  <body>
+                      <h1>🎭 Playwright Test Reports</h1>
+                      <p>Generated: $(date)</p>
+                      
+                      <div class="report-card">
+                          <h2>📊 Parallel Tests Report</h2>
+                          <p>Tests with parallel workers and multiple browsers</p>
+                          <a href="./playwright-report-parallel/index.html">View Parallel Report</a>
+                      </div>
+                      
+                      <div class="report-card">
+                          <h2>🏥 Mixed Projects Report</h2>
+                          <p>Tests with separate projects (Core API + Clinic API)</p>
+                          <a href="./playwright-report-mixed-projects/index.html">View Mixed Projects Report</a>
+                      </div>
+                      
+                      <div class="report-card">
+                          <h2>🔍 Test Results</h2>
+                          <p>Detailed test artifacts and screenshots</p>
+                          <a href="./test-results/">Browse Test Results</a>
+                      </div>
+                  </body>
+                  </html>
+                  EOF
+
+            - name: Copy reports to gh-pages
+              run: |
+                  cp -r reports/* gh-pages/ 2>/dev/null || true
+
+            - name: Setup Pages
+              uses: actions/configure-pages@v4
+
+            - name: Upload to GitHub Pages
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: "./gh-pages"
+
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
