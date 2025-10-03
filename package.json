@@ -1,0 +1,26 @@
+{
+  "name": "Playwright tests with TESTOMATIO",
+  "version": "1.1.1",
+  "description": "Running and Monitoring Playwright tests with TESTOMATIO Reporter and Bitbucket Pipeline",
+  "main": "index.js",
+  "scripts": {
+    "test:e2e-examples": "npx playwright test --config e2e-examples/playwright-e2e.config.ts",
+    "test:smoke-examples": "npx playwright test --config e2e-examples/playwright-smoke.config.ts",
+    "test:parallel-examples": "npx playwright test --config e2e-examples/playwright-parallel.config.ts",
+    "test:mixed": "npx playwright test --config e2e-examples/playwright-parallel.config.ts",
+    "test:mixed-projects": "npx playwright test --config e2e-examples/playwright-mixed-projects.config.ts",
+    "test:e2e": "npx playwright test"
+  },
+  "keywords": [
+    "e2e",
+    "testomatio",
+    "playwright"
+  ],
+  "author": "davert, mihaylukvv",
+  "license": "ISC",
+  "dependencies": {
+    "@playwright/test": "^1.55.1",
+    "dotenv": "^16.6.1",
+    "@testomatio/reporter": "^2.3.6"
+  }
+}

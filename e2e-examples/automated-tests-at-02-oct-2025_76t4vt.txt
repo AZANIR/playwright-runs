@@ -1,0 +1,678 @@
+[0KRunning with gitlab-runner 17.8.2 (f9c5437e)[0;m
+[0K  on High Resource Runner 9rrqZuJp, system ID: s_7222ffbcfeac[0;m
+[0K  feature flags: FF_USE_FASTZIP:true[0;m
+section_start:1759412065:prepare_executor
+[0K[0K[36;1mPreparing the "docker" executor[0;m[0;m
+[0KUsing Docker executor with image mcr.microsoft.com/playwright:v1.55.0-noble ...[0;m
+[0KPulling docker image mcr.microsoft.com/playwright:v1.55.0-noble ...[0;m
+[0KUsing docker image sha256:8a461db088d3b546203b41ea8496e497597bd0bc9a08a331ae5804c30a2a4c9e for mcr.microsoft.com/playwright:v1.55.0-noble with digest mcr.microsoft.com/playwright@sha256:b27e719ecbfef153e13fd24e8341736733bf2658b229677eb21ff57ff5d7fb29 ...[0;m
+section_end:1759412067:prepare_executor
+[0Ksection_start:1759412067:prepare_script
+[0K[0K[36;1mPreparing environment[0;m[0;m
+Running on runner-9rrqzujp-project-786-concurrent-1 via dh-gitlab-high-resource-runner...
+section_end:1759412068:prepare_script
+[0Ksection_start:1759412068:get_sources
+[0K[0K[36;1mGetting source from Git repository[0;m[0;m
+[32;1mFetching changes with git depth set to 20...[0;m
+Reinitialized existing Git repository in /builds/bluezinc/core/.git/
+[32;1mChecking out 086180fa as detached HEAD (ref is tm3-preview-main)...[0;m
+Removing e2e/auth/
+Removing e2e/node_modules/
+Removing e2e/test-output/
+
+[32;1mSkipping Git submodules setup[0;m
+section_end:1759412076:get_sources
+[0Ksection_start:1759412076:restore_cache
+[0K[0K[36;1mRestoring cache[0;m[0;m
+[32;1mChecking cache for 0_e2e/yarn-0691ba8c910a970a8f351b5effeb82a52f2c1442-3-protected...[0;m
+No URL provided, cache will not be downloaded from shared cache server. Instead a local version of cache will be extracted.[0;m 
+[0;33mWARNING: Cache file does not exist                [0;m 
+[0;33mFailed to extract cache[0;m
+section_end:1759412080:restore_cache
+[0Ksection_start:1759412080:step_script
+[0K[0K[36;1mExecuting "step_script" stage of the job script[0;m[0;m
+[0KUsing docker image sha256:8a461db088d3b546203b41ea8496e497597bd0bc9a08a331ae5804c30a2a4c9e for mcr.microsoft.com/playwright:v1.55.0-noble with digest mcr.microsoft.com/playwright@sha256:b27e719ecbfef153e13fd24e8341736733bf2658b229677eb21ff57ff5d7fb29 ...[0;m
+[32;1m$ cd e2e[0;m
+[32;1m$ yarn[0;m
+yarn install v1.22.22
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+Done in 8.95s.
+[32;1m$ export TESTOMATIO=$TESTOMATIO_API[0;m
+[32;1m$ yarn test:e2e:api[0;m
+yarn run v1.22.22
+$ npx playwright test --project=tm3-api --project=e-clinic-api
+[TESTOMATIO] Pipes: Testomatio Reporter
+[TESTOMATIO] Testomatio Reporter v1.6.13
+
+Running 240 tests using 10 workers
+
+[TESTOMATIO] S3 credentials obtained from Testomat.io...
+[TESTOMATIO] 📊 Report created. Report ID: 43ae887a
+Logging in for ECL with baseURL: |https://ecl_b.test4.e-clinic.local|
+Logging in for Core with baseURL: |https://a.test4.tm3app.local|
+  ✓    1 [setup-ecl] › tests/global-setups/ecl/ecl.global.setup.ts:9:6 › Setup for ECL project (377ms)
+  ✓    2 [setup-tm3] › tests/global-setups/tm3/tm3.global.setup.ts:9:6 › Setup for Core project (378ms)
+  ✓    6 [tm3-api] › tests/api-tests/_shared/expenditure.spec.ts:5:7 › Expenditure API Tests @Sf1fa0c43 › Create Expenditure @T95c82b90 (1.4s)
+  ✓    5 [tm3-api] › tests/api-tests/_shared/class.spec.ts:5:7 › Class API Tests @S22d451d1 › Create class and verify fields @T39f119c5 (1.4s)
+  ✓   10 [tm3-api] › tests/api-tests/_shared/contact.spec.ts:6:7 › Contact API Tests @S80a8fac5 › Create Contact @Te1629bda (1.1s)
+  ✘    9 [tm3-api] › tests/api-tests/_shared/nationwide.spec.ts:8:5 › should successfully upload, save, and confirm nationwide Excel price list @Tb0d9d90f (1.2s)
+  ✓    3 [tm3-api] › tests/api-tests/_shared/client.spec.ts:15:7 › Client API Tests @Sb721d58e › Create Client @smoke @Tafc212f8 (2.2s)
+  ✓   15 [tm3-api] › tests/api-tests/_shared/contact.spec.ts:15:7 › Contact API Tests @S80a8fac5 › Update Contact @Tbce79952 (694ms)
+  ✓   14 [tm3-api] › tests/api-tests/_shared/class.spec.ts:18:7 › Class API Tests @S22d451d1 › Edit class and verify updated fields @T6a9d7848 (1.1s)
+  ✘   13 [tm3-api] › tests/api-tests/_shared/expenditure.spec.ts:29:7 › Expenditure API Tests @Sf1fa0c43 › Update Expenditure @T905de7a4 (1.3s)
+  ✓   18 [tm3-api] › tests/api-tests/_shared/supplier.spec.ts:10:7 › Supplier API Tests @T1a499f88 @S59686948 › Create Supplier @smoke @T1a499f88 (249ms)
+  ✓   19 [tm3-api] › tests/api-tests/_shared/supplier.spec.ts:19:7 › Supplier API Tests @T1a499f88 @S59686948 › Update Supplier @T4574667a (256ms)
+  ✓   16 [tm3-api] › tests/api-tests/_shared/client.spec.ts:22:7 › Client API Tests @Sb721d58e › Update Client  @smoke @T72251831 (2.0s)
+  ✓    4 [tm3-api] › tests/api-tests/_shared/business.spec.ts:6:7 › Business API Tests @Business @Sdf813ccc › Create Business and verify common fields @smoke @TCreateBusiness (4.8s)
+  ✓   20 [tm3-api] › tests/api-tests/_shared/task.spec.ts:18:7 › Task API Tests @S1ddd33dd › Create Task @Tb45587bf (445ms)
+  ✓   23 [tm3-api] › tests/api-tests/_shared/task.spec.ts:37:7 › Task API Tests @S1ddd33dd › Update Task @Tf425d2ad (502ms)
+  ✓   24 [tm3-api] › tests/api-tests/_shared/task.spec.ts:60:7 › Task API Tests @S1ddd33dd › Delete Task @smoke @T8309d643 (491ms)
+  ✓   22 [tm3-api] › tests/api-tests/_shared/business.spec.ts:19:7 › Business API Tests @Business @Sdf813ccc › Update Business and verify changes via search @TUpdateBusiness (1.8s)
+  ✓   21 [tm3-api] › tests/api-tests/_shared/client.spec.ts:34:7 › Client API Tests @Sb721d58e › Delete Client @smoke @T3bcce848 (3.2s)
+  ✓   26 [tm3-api] › tests/api-tests/_shared/business.spec.ts:76:7 › Business API Tests @Business @Sdf813ccc › Search and verify Business In Use @TBusinessInUse (1.4s)
+  ✘   27 [tm3-api] › tests/api-tests/_shared/nationwide.spec.ts:8:5 › should successfully upload, save, and confirm nationwide Excel price list @Tb0d9d90f (retry #1) (885ms)
+  ✓   28 [tm3-api] › tests/api-tests/_shared/client.spec.ts:42:7 › Client API Tests @Sb721d58e › should return correct contact details for a client @T1557f6b0 (3.1s)
+  ✓   29 [tm3-api] › tests/api-tests/_shared/business.spec.ts:102:7 › Business API Tests @Business @Sdf813ccc › Search and verify Business Not In Use @TBusinessNotInUse (2.6s)
+  ✓   30 [tm3-api] › tests/api-tests/_shared/expenditure.spec.ts:29:7 › Expenditure API Tests @Sf1fa0c43 › Update Expenditure @T905de7a4 (retry #1) (2.5s)
+  ✓   32 [tm3-api] › tests/api-tests/setup/documents.spec.ts:15:7 › Document Templates API Tests  @S24be7cb3 › Create document template @Tf145bd56 (547ms)
+  ✓   33 [tm3-api] › tests/api-tests/_shared/expenditure.spec.ts:63:7 › Expenditure API Tests @Sf1fa0c43 › Search Expenditure @Tbf26ec90 (677ms)
+/tmBase-test4/letters/patients/1/1412/velut.txt
+  ✓   17 [tm3-api] › tests/api-tests/_shared/practitioner.spec.ts:26:7 › Practitioner API Tests @S84869fd6 › Create Appointment @smoke @Tb437820b (7.9s)
+  ✓   31 [tm3-api] › tests/api-tests/_shared/client.spec.ts:48:7 › Client API Tests @Sb721d58e › Upload document to client @T3813afda (2.0s)
+  ✓   25 [tm3-api] › tests/api-tests/_shared/worktime.spec.ts:21:7 › Worktime API Tests @S1ddd33dd › Create Worktime @smoke @Tceaf2aac (6.8s)
+  ✓   35 [tm3-api] › tests/api-tests/setup/forms.spec.ts:17:7 › Form Settings @S061bbdc3 › Update Form Settings @T9b45977f (856ms)
+  ✓    7 [tm3-api] › tests/api-tests/_shared/finances.spec.ts:46:7 › Invoice API Tests @S42ecdf02 › Create/View invoice @smoke @T58733e35 (2.0s)
+  ✓   39 [tm3-api] › tests/api-tests/setup/forms.spec.ts:57:7 › Form Template Management @Seb4b306b › Create & View Form Template @T22501406 (363ms)
+  ✓   37 [tm3-api] › tests/api-tests/_shared/client.spec.ts:87:7 › Client API Tests @Sb721d58e › Add payment for client @T02e5f972 (1.7s)
+  ✓   42 [tm3-api] › tests/api-tests/setup/forms.spec.ts:70:7 › Form Template Management @Seb4b306b › Update Form Template @Ta72dcd5e (575ms)
+  ✓   44 [tm3-api] › tests/api-tests/setup/forms.spec.ts:77:7 › Form Template Management @Seb4b306b › Delete Form Template @T38dda112 (247ms)
+  ✓   40 [tm3-api] › tests/api-tests/setup/connect.spec.ts:10:7 › Connect Site Settings API @S98f15bda › Update site settings @T6dcc1fd2 (1.2s)
+  ✓   45 [tm3-api] › tests/api-tests/setup/forms.spec.ts:84:7 › Form Template Management @Seb4b306b › Clone Form Template @Taf583c95 (489ms)
+  ✓   46 [tm3-api] › tests/api-tests/setup/connect.spec.ts:51:9 › Connect Section API @S3085d179 › Create section Search @Tfa91466b (472ms)
+  ✓   12 [tm3-api] › tests/api-tests/_shared/diary.spec.ts:23:7 › Diary API Tests @S8d0fc01a › Monthly diary schedule test - appointment is visible @Te1e96c78 (15.1s)
+  ✘   34 [tm3-api] › tests/api-tests/setup/documents.spec.ts:28:7 › Document Templates API Tests  @S24be7cb3 › Rename document template @T4b851bc1 (4.6s)
+  ✓   48 [tm3-api] › tests/api-tests/setup/connect.spec.ts:51:9 › Connect Section API @S3085d179 › Create section Header @Tfa91466b (481ms)
+  ✓   50 [tm3-api] › tests/api-tests/setup/connect.spec.ts:51:9 › Connect Section API @S3085d179 › Create section Categories @Tfa91466b (417ms)
+  ✓   51 [tm3-api] › tests/api-tests/setup/connect.spec.ts:51:9 › Connect Section API @S3085d179 › Create section Services @Tfa91466b (446ms)
+  ✓   52 [tm3-api] › tests/api-tests/setup/connect.spec.ts:51:9 › Connect Section API @S3085d179 › Create section Offers @Tfa91466b (485ms)
+  ✓   11 [tm3-api] › tests/api-tests/_shared/location.spec.ts:28:7 › Location Room Schedule API Tests @Sf692e62c › Show appointments for current location only (allLocations: false) @T0196cf4e (674ms)
+  ✓   43 [tm3-api] › tests/api-tests/_shared/client.spec.ts:99:7 › Client API Tests @Sb721d58e › Add note for client @T00d03cbb (3.5s)
+  ✓   53 [tm3-api] › tests/api-tests/setup/connect.spec.ts:51:9 › Connect Section API @S3085d179 › Create section Packages @Tfa91466b (414ms)
+  ✓    8 [tm3-api] › tests/api-tests/_shared/clinicalCase.spec.ts:23:7 › Clinical Cases API Tests @Sa2d6cb3a › View all Clinical Cases @smoke @T6161c4b2 (5.1s)
+  ✓   56 [tm3-api] › tests/api-tests/setup/connect.spec.ts:63:7 › Connect Section API @S3085d179 › Update section @Ta5ebc292 (564ms)
+  ✓   54 [tm3-api] › tests/api-tests/_shared/location.spec.ts:71:7 › Location Room Schedule API Tests @Sf692e62c › Show appointments from all locations (allLocations: true) @T918ecc99 (855ms)
+  ✓   58 [tm3-api] › tests/api-tests/setup/connect.spec.ts:86:7 › Connect Section API @S3085d179 › Delete section @T2702af6b (561ms)
+  ✓   57 [tm3-api] › tests/api-tests/_shared/clinicalCase.spec.ts:38:7 › Clinical Cases API Tests @Sa2d6cb3a › Create new Case via Client page @smoke @Te09be285 (1.1s)
+  ✓   60 [tm3-api] › tests/api-tests/setup/connect.spec.ts:101:7 › Connect Category API @Se532cb20 › Create category @T8800846b (645ms)
+  ✓   55 [tm3-api] › tests/api-tests/_shared/client.spec.ts:109:7 › Client API Tests @Sb721d58e › Add alert for client @T967882d6 (2.1s)
+  ✓   61 [tm3-api] › tests/api-tests/_shared/clinicalCase.spec.ts:48:7 › Clinical Cases API Tests @Sa2d6cb3a › View Case @smoke @Te7eeb084 (593ms)
+  ✓   62 [tm3-api] › tests/api-tests/setup/connect.spec.ts:115:7 › Connect Category API @Se532cb20 › Update category @T6dfaaa66 (686ms)
+  ✓   59 [tm3-api] › tests/api-tests/setup/packages.spec.ts:6:7 › Package API Tests @S3912edf5 › Create Package @smoke @Tca8522c5 (2.4s)
+  ✓   64 [tm3-api] › tests/api-tests/_shared/clinicalCase.spec.ts:57:7 › Clinical Cases API Tests @Sa2d6cb3a › Create new Case via appointment @smoke @T75d25252 (1.2s)
+  ✓   47 [tm3-api] › tests/api-tests/setup/location.spec.ts:6:7 › Location API Tests @S1b9cfa46 › Create Location and verify response @smoke @Tb68d2f17 (5.8s)
+  ✓   67 [tm3-api] › tests/api-tests/_shared/clinicalCase.spec.ts:69:9 › Clinical Cases API Tests @Sa2d6cb3a › Clinical Status - Awaiting First Appointment @T964748a3 (1.7s)
+  ✓   70 [tm3-api] › tests/api-tests/_shared/clinicalCase.spec.ts:69:9 › Clinical Cases API Tests @Sa2d6cb3a › Clinical Status - In Treatment @T964748a3 (1.8s)
+  ✓   65 [tm3-api] › tests/api-tests/setup/connect.spec.ts:137:7 › Connect Category API @Se532cb20 › Arrange Category @Tbc7957d7 (4.2s)
+  ✓   66 [tm3-api] › tests/api-tests/setup/packages.spec.ts:14:7 › Package API Tests @S3912edf5 › Update Package @T18ca8e8c (3.7s)
+  ✓   69 [tm3-api] › tests/api-tests/setup/documents.spec.ts:28:7 › Document Templates API Tests  @S24be7cb3 › Rename document template @T4b851bc1 (retry #1) (3.1s)
+  ✓   68 [tm3-api] › tests/api-tests/setup/location.spec.ts:26:7 › Location API Tests @S1b9cfa46 › Update Location and verify response @Tab7d8344 (3.7s)
+  ✓   41 [tm3-api] › tests/api-tests/_shared/finances.spec.ts:53:7 › Invoice API Tests @S42ecdf02 › Edit invoice @smoke @T81866a3f (11.1s)
+  ✓   63 [tm3-api] › tests/api-tests/_shared/client.spec.ts:123:7 › Client API Tests @Sb721d58e › Send form to client @Tdb28ae6d (5.2s)
+  ✓   74 [tm3-api] › tests/api-tests/setup/documents.spec.ts:67:7 › Document Templates API Tests  @S24be7cb3 › Hide document template @T9f0b4493 (543ms)
+  ✓   73 [tm3-api] › tests/api-tests/setup/packages.spec.ts:31:7 › Package API Tests @S3912edf5 › Add Bundle to Package @smoke @T31c10fc4 (800ms)
+  ✓   72 [tm3-api] › tests/api-tests/setup/connect.spec.ts:166:7 › Connect Category API @Se532cb20 › Nest Category @Tacd3b908 (910ms)
+  ✓   79 [tm3-api] › tests/api-tests/setup/room.spec.ts:11:7 › Room API @S75e2a324 › Add Room @Ta4b5e363 (630ms)
+  ✓   81 [tm3-api] › tests/api-tests/setup/room.spec.ts:17:7 › Room API @S75e2a324 › Update Room @Te9f056b7 (285ms)
+  ✓   71 [tm3-api] › tests/api-tests/_shared/clinicalCase.spec.ts:69:9 › Clinical Cases API Tests @Sa2d6cb3a › Clinical Status - On Hold @T964748a3 (1.9s)
+  ✓   38 [tm3-api] › tests/api-tests/_shared/worktime.spec.ts:48:7 › Worktime API Tests @S1ddd33dd › Update Worktime @T77a26df5 (13.8s)
+  ✓   80 [tm3-api] › tests/api-tests/setup/connect.spec.ts:182:7 › Connect Category API @Se532cb20 › Delete category @Tfe62722f (1.3s)
+  ✓   84 [tm3-api] › tests/api-tests/setup/stocks.spec.ts:12:7 › Stocks API Tests @Sda710bc9 › Create stock @smoke @Tb4831424 (313ms)
+  ✓   82 [tm3-api] › tests/api-tests/setup/room.spec.ts:28:7 › Room API @S75e2a324 › Search Room @Td4f35872 (446ms)
+  ✓   87 [tm3-api] › tests/api-tests/setup/tags.spec.ts:12:7 › User API Tests @S948946a3 › Create tag @Tffb6a325 (222ms)
+  ✓   76 [tm3-api] › tests/api-tests/_shared/finances.spec.ts:65:7 › Invoice API Tests @S42ecdf02 › Delete invoice @smoke @T3a89b428 (2.4s)
+  ✓   88 [tm3-api] › tests/api-tests/setup/tags.spec.ts:22:7 › User API Tests @S948946a3 › Update tag @Tf0361ebf (272ms)
+  ✓   86 [tm3-api] › tests/api-tests/setup/stocks.spec.ts:23:7 › Stocks API Tests @Sda710bc9 › Update stock @smoke @Td11ba8c0 (634ms)
+  ✓   78 [tm3-api] › tests/api-tests/setup/documents.spec.ts:81:7 › Document Templates API Tests  @S24be7cb3 › Copy document template @Tbed6f3d7 (2.2s)
+  ✓   83 [tm3-api] › tests/api-tests/_shared/clinicalCase.spec.ts:69:9 › Clinical Cases API Tests @Sa2d6cb3a › Clinical Status - Discharged @T964748a3 (1.4s)
+  ✓   85 [tm3-api] › tests/api-tests/setup/connect.spec.ts:208:7 › Connect Service API @S77155a11 › Add Service (Appointment) @T2489d621 (619ms)
+  ✓   77 [tm3-api] › tests/api-tests/_shared/client.spec.ts:141:7 › Client API Tests @Sb721d58e › Send email to client  @T6d6f9e28 (2.9s)
+  ✓   36 [tm3-api] › tests/api-tests/_shared/practitioner.spec.ts:41:7 › Practitioner API Tests @S84869fd6 › Edit Appointment @smoke @Tb41e0156 (15.6s)
+  ✓   90 [tm3-api] › tests/api-tests/setup/user.spec.ts:5:7 › User API Tests @S948946a3 › Create User @smoke @Tf707f334 (543ms)
+  ✓   91 [tm3-api] › tests/api-tests/setup/connect.spec.ts:223:7 › Connect Service API @S77155a11 › Edit Service (Appointment) @T868b3d63 (1.2s)
+  ✓   94 [tm3-api] › tests/api-tests/setup/user.spec.ts:14:7 › User API Tests @S948946a3 › Update User @smoke @T09d0426d (1.2s)
+  ✓   89 [tm3-api] › tests/api-tests/_shared/finances.spec.ts:77:9 › Quick Bill Payment Tests @S116f8c95 › Chase Payment  @T0469d05d (2.0s)
+  ✓   95 [tm3-api] › tests/api-tests/setup/connect.spec.ts:247:7 › Connect Service API @S77155a11 › Add Service (Class) @Tb24e3c13 (717ms)
+  ✓   49 [tm3-api] › tests/api-tests/_shared/diary.spec.ts:47:7 › Diary API Tests @S8d0fc01a › Day diary schedule test - appointment is visible @T90ead795 (14.9s)
+  ✓   75 [tm3-api] › tests/api-tests/setup/practitioner.spec.ts:5:7 › Practitioner Setup API Tests - Create Employee @S910eef47 › Create Employee @T3a011e65 (5.8s)
+  ✓   96 [tm3-api] › tests/api-tests/_shared/finances.spec.ts:77:9 › Quick Bill Payment Tests @S116f8c95 › QuickBill Payment  @T0469d05d (1.4s)
+  ✓   92 [tm3-api] › tests/api-tests/_shared/client.spec.ts:164:7 › Client API Tests @Sb721d58e › Send SMS to client @T51a1c035 (3.0s)
+  ✓   97 [tm3-api] › tests/api-tests/setup/connect.spec.ts:261:7 › Connect Service API @S77155a11 › Edit Service (Class) @T13e23367 (1.6s)
+  ✓   99 [tm3-api] › tests/api-tests/_shared/finances.spec.ts:77:9 › Quick Bill Payment Tests @S116f8c95 › DoNotBill Payment  @T0469d05d (1.8s)
+  ✓  100 [tm3-api] › tests/api-tests/_shared/finances.spec.ts:77:9 › Quick Bill Payment Tests @S116f8c95 › Cash Payment  @T0469d05d (2.0s)
+  ✓  102 [e-clinic-api] › tests/api-tests/_shared/class.spec.ts:5:7 › Class API Tests @S22d451d1 › Create class and verify fields @T39f119c5 (1.0s)
+  ✓  101 [e-clinic-api] › tests/api-tests/_shared/business.spec.ts:6:7 › Business API Tests @Business @Sdf813ccc › Create Business and verify common fields @smoke @TCreateBusiness (1.4s)
+  ✓  103 [e-clinic-api] › tests/api-tests/_shared/client.spec.ts:15:7 › Client API Tests @Sb721d58e › Create Client @smoke @Tafc212f8 (1.2s)
+  ✓  104 [e-clinic-api] › tests/api-tests/_shared/class.spec.ts:18:7 › Class API Tests @S22d451d1 › Edit class and verify updated fields @T6a9d7848 (807ms)
+  ✓  106 [e-clinic-api] › tests/api-tests/_shared/business.spec.ts:19:7 › Business API Tests @Business @Sdf813ccc › Update Business and verify changes via search @TUpdateBusiness (1.0s)
+  ✓  105 [tm3-api] › tests/api-tests/_shared/finances.spec.ts:120:7 › Add Charge Via Appointment @S102bbc4b › Add Charge To Invoice @T64fa4fb4 (2.0s)
+  ✓  110 [e-clinic-api] › tests/api-tests/_shared/business.spec.ts:76:7 › Business API Tests @Business @Sdf813ccc › Search and verify Business In Use @TBusinessInUse (763ms)
+  ✘  107 [e-clinic-api] › tests/api-tests/_shared/client.spec.ts:22:7 › Client API Tests @Sb721d58e › Update Client  @smoke @T72251831 (1.8s)
+  ✓   93 [tm3-api] › tests/api-tests/_shared/practitioner.spec.ts:63:7 › Practitioner API Tests @S84869fd6 › Delete Appointment @T3bcce848 (9.6s)
+  ✓  112 [e-clinic-api] › tests/api-tests/_shared/business.spec.ts:102:7 › Business API Tests @Business @Sdf813ccc › Search and verify Business Not In Use @TBusinessNotInUse (774ms)
+  ✓   98 [tm3-api] › tests/api-tests/_shared/diary.spec.ts:73:7 › Diary API Tests @S8d0fc01a › Week diary schedule test - appointment is visible @Tccfe50b5 (7.3s)
+  ✓  113 [e-clinic-api] › tests/api-tests/_shared/contact.spec.ts:6:7 › Contact API Tests @S80a8fac5 › Create Contact @Te1629bda (802ms)
+  ✓  118 [e-clinic-api] › tests/api-tests/_shared/expenditure.spec.ts:5:7 › Expenditure API Tests @Sf1fa0c43 › Create Expenditure @T95c82b90 (990ms)
+  ✓  111 [tm3-api] › tests/api-tests/_shared/finances.spec.ts:143:7 › Add Charge Via Appointment @S102bbc4b › Edit Charge On Invoice @T61219eac (3.4s)
+  ✓  119 [e-clinic-api] › tests/api-tests/_shared/contact.spec.ts:15:7 › Contact API Tests @S80a8fac5 › Update Contact @Tbce79952 (3.6s)
+  ✓  120 [e-clinic-api] › tests/api-tests/_shared/expenditure.spec.ts:29:7 › Expenditure API Tests @Sf1fa0c43 › Update Expenditure @T905de7a4 (2.6s)
+  ✘  122 [e-clinic-api] › tests/api-tests/_shared/nationwide.spec.ts:8:5 › should successfully upload, save, and confirm nationwide Excel price list @Tb0d9d90f (212ms)
+  ✓  123 [e-clinic-api] › tests/api-tests/_shared/expenditure.spec.ts:63:7 › Expenditure API Tests @Sf1fa0c43 › Search Expenditure @Tbf26ec90 (660ms)
+  ✓  121 [tm3-api] › tests/api-tests/_shared/finances.spec.ts:240:7 › Invoice Wizard @S7dd3a528 › Generate Invoice @Td7430640 (2.6s)
+  ✓  115 [tm3-api] › tests/api-tests/_shared/practitioner.spec.ts:73:7 › Practitioner API Tests @S84869fd6 › Create Event @smoke @Tc47ae1dc (7.5s)
+  ✓  117 [tm3-api] › tests/api-tests/_shared/diary.spec.ts:100:7 › Diary API Tests @S8d0fc01a › Diary list View schedule - appointment is visible @Taad0eed9 (7.3s)
+  ✘  125 [e-clinic-api] › tests/api-tests/_shared/client.spec.ts:22:7 › Client API Tests @Sb721d58e › Update Client  @smoke @T72251831 (retry #1) (1.8s)
+  ✓  109 [e-clinic-api] › tests/api-tests/_shared/finances.spec.ts:46:7 › Invoice API Tests @S42ecdf02 › Create/View invoice @smoke @T58733e35 (1.4s)
+  ✓  108 [e-clinic-api] › tests/api-tests/_shared/clinicalCase.spec.ts:23:7 › Clinical Cases API Tests @Sa2d6cb3a › View all Clinical Cases @smoke @T6161c4b2 (2.5s)
+  ✘  129 [e-clinic-api] › tests/api-tests/_shared/nationwide.spec.ts:8:5 › should successfully upload, save, and confirm nationwide Excel price list @Tb0d9d90f (retry #1) (964ms)
+  ✓  128 [e-clinic-api] › tests/api-tests/_shared/finances.spec.ts:53:7 › Invoice API Tests @S42ecdf02 › Edit invoice @smoke @T81866a3f (1.9s)
+  ✓  130 [e-clinic-api] › tests/api-tests/_shared/clinicalCase.spec.ts:38:7 › Clinical Cases API Tests @Sa2d6cb3a › Create new Case via Client page @smoke @Te09be285 (1.0s)
+  ✓  131 [e-clinic-api] › tests/api-tests/_shared/supplier.spec.ts:10:7 › Supplier API Tests @T1a499f88 @S59686948 › Create Supplier @smoke @T1a499f88 (699ms)
+  ✓  133 [e-clinic-api] › tests/api-tests/_shared/clinicalCase.spec.ts:48:7 › Clinical Cases API Tests @Sa2d6cb3a › View Case @smoke @Te7eeb084 (673ms)
+  ✓  134 [e-clinic-api] › tests/api-tests/_shared/supplier.spec.ts:19:7 › Supplier API Tests @T1a499f88 @S59686948 › Update Supplier @T4574667a (590ms)
+  ✓  132 [e-clinic-api] › tests/api-tests/_shared/finances.spec.ts:65:7 › Invoice API Tests @S42ecdf02 › Delete invoice @smoke @T3a89b428 (1.3s)
+  ✓  114 [e-clinic-api] › tests/api-tests/_shared/diary.spec.ts:23:7 › Diary API Tests @S8d0fc01a › Monthly diary schedule test - appointment is visible @Te1e96c78 (12.6s)
+  ✓  116 [e-clinic-api] › tests/api-tests/_shared/location.spec.ts:28:7 › Location Room Schedule API Tests @Sf692e62c › Show appointments for current location only (allLocations: false) @T0196cf4e (194ms)
+  ✓  140 [e-clinic-api] › tests/api-tests/_shared/location.spec.ts:71:7 › Location Room Schedule API Tests @Sf692e62c › Show appointments from all locations (allLocations: true) @T918ecc99 (332ms)
+  ✓  135 [e-clinic-api] › tests/api-tests/_shared/clinicalCase.spec.ts:57:7 › Clinical Cases API Tests @Sa2d6cb3a › Create new Case via appointment @smoke @T75d25252 (1.5s)
+  ✓  124 [e-clinic-api] › tests/api-tests/_shared/practitioner.spec.ts:26:7 › Practitioner API Tests @S84869fd6 › Create Appointment @smoke @Tb437820b (8.2s)
+  ✓  126 [tm3-api] › tests/api-tests/_shared/practitioner.spec.ts:84:7 › Practitioner API Tests @S84869fd6 › Edit Event @smoke @Te6e48a27 (6.1s)
+  ✓  141 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:10:7 › Connect Site Settings API @S98f15bda › Update site settings @T6dcc1fd2 (460ms)
+  ✓  137 [e-clinic-api] › tests/api-tests/_shared/finances.spec.ts:77:9 › Quick Bill Payment Tests @S116f8c95 › Chase Payment  @T0469d05d (1.2s)
+  ✓  127 [tm3-api] › tests/api-tests/_shared/diary.spec.ts:130:7 › Diary API Tests @S8d0fc01a › Room view diary schedule - appointment is visible @T23a9d4ea (6.3s)
+  ✓  145 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:51:9 › Connect Section API @S3085d179 › Create section Search @Tfa91466b (193ms)
+  ✓  138 [e-clinic-api] › tests/api-tests/_shared/client.spec.ts:34:7 › Client API Tests @Sb721d58e › Delete Client @smoke @T3bcce848 (1.2s)
+  ✓  148 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:51:9 › Connect Section API @S3085d179 › Create section Header @Tfa91466b (195ms)
+  ✓  150 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:51:9 › Connect Section API @S3085d179 › Create section Categories @Tfa91466b (152ms)
+  ✓  151 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:51:9 › Connect Section API @S3085d179 › Create section Services @Tfa91466b (149ms)
+  ✓  152 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:51:9 › Connect Section API @S3085d179 › Create section Offers @Tfa91466b (140ms)
+  ✓  153 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:51:9 › Connect Section API @S3085d179 › Create section Packages @Tfa91466b (123ms)
+  ✓  142 [e-clinic-api] › tests/api-tests/_shared/clinicalCase.spec.ts:69:9 › Clinical Cases API Tests @Sa2d6cb3a › Clinical Status - Awaiting First Appointment @T964748a3 (1.5s)
+  ✓  154 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:63:7 › Connect Section API @S3085d179 › Update section @Ta5ebc292 (227ms)
+  ✓  146 [e-clinic-api] › tests/api-tests/_shared/finances.spec.ts:77:9 › Quick Bill Payment Tests @S116f8c95 › QuickBill Payment  @T0469d05d (1.4s)
+  ✓  156 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:86:7 › Connect Section API @S3085d179 › Delete section @T2702af6b (265ms)
+  ✓  149 [e-clinic-api] › tests/api-tests/_shared/client.spec.ts:42:7 › Client API Tests @Sb721d58e › should return correct contact details for a client @T1557f6b0 (1.5s)
+  ✓  155 [e-clinic-api] › tests/api-tests/_shared/clinicalCase.spec.ts:69:9 › Clinical Cases API Tests @Sa2d6cb3a › Clinical Status - In Treatment @T964748a3 (1.2s)
+  ✓  157 [e-clinic-api] › tests/api-tests/_shared/finances.spec.ts:77:9 › Quick Bill Payment Tests @S116f8c95 › DoNotBill Payment  @T0469d05d (1.1s)
+  ✓  158 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:101:7 › Connect Category API @Se532cb20 › Create category @T8800846b (1.0s)
+/tmBase-test4/letters/patients/1/1284/valde.txt
+  ✓  159 [e-clinic-api] › tests/api-tests/_shared/client.spec.ts:48:7 › Client API Tests @Sb721d58e › Upload document to client @T3813afda (1.1s)
+  ✓  163 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:115:7 › Connect Category API @Se532cb20 › Update category @T6dfaaa66 (560ms)
+  ✓  161 [e-clinic-api] › tests/api-tests/_shared/finances.spec.ts:77:9 › Quick Bill Payment Tests @S116f8c95 › Cash Payment  @T0469d05d (1.3s)
+  ✓  160 [e-clinic-api] › tests/api-tests/_shared/clinicalCase.spec.ts:69:9 › Clinical Cases API Tests @Sa2d6cb3a › Clinical Status - On Hold @T964748a3 (1.6s)
+  ✓  164 [e-clinic-api] › tests/api-tests/_shared/client.spec.ts:87:7 › Client API Tests @Sb721d58e › Add payment for client @T02e5f972 (988ms)
+  ✓  166 [e-clinic-api] › tests/api-tests/_shared/finances.spec.ts:120:7 › Add Charge Via Appointment @S102bbc4b › Add Charge To Invoice @T64fa4fb4 (1.5s)
+  ✓  167 [e-clinic-api] › tests/api-tests/_shared/clinicalCase.spec.ts:69:9 › Clinical Cases API Tests @Sa2d6cb3a › Clinical Status - Discharged @T964748a3 (1.5s)
+  ✓  168 [e-clinic-api] › tests/api-tests/_shared/client.spec.ts:99:7 › Client API Tests @Sb721d58e › Add note for client @T00d03cbb (1.5s)
+  ✓  162 [e-clinic-api] › tests/api-tests/_shared/task.spec.ts:18:7 › Task API Tests @S1ddd33dd › Create Task @Tb45587bf (574ms)
+  ✓  170 [e-clinic-api] › tests/api-tests/setup/documents.spec.ts:15:7 › Document Templates API Tests  @S24be7cb3 › Create document template @Tf145bd56 (365ms)
+  ✓  144 [tm3-api] › tests/api-tests/_shared/practitioner.spec.ts:103:7 › Practitioner API Tests @S84869fd6 › Delete Event @smoke @T91779dac (6.1s)
+  ✓  136 [e-clinic-api] › tests/api-tests/_shared/worktime.spec.ts:21:7 › Worktime API Tests @S1ddd33dd › Create Worktime @smoke @Tceaf2aac (7.4s)
+  ✓  147 [tm3-api] › tests/api-tests/_shared/diary.spec.ts:172:7 › Diary API Tests @S8d0fc01a › Show/Hide Cancellation @Ta724bd91 (6.0s)
+  ✓  173 [e-clinic-api] › tests/api-tests/setup/documents.spec.ts:28:7 › Document Templates API Tests  @S24be7cb3 › Rename document template @T4b851bc1 (380ms)
+  ✓  172 [e-clinic-api] › tests/api-tests/_shared/task.spec.ts:37:7 › Task API Tests @S1ddd33dd › Update Task @Tf425d2ad (541ms)
+  ✓  177 [e-clinic-api] › tests/api-tests/setup/documents.spec.ts:67:7 › Document Templates API Tests  @S24be7cb3 › Hide document template @T9f0b4493 (201ms)
+  ✓  171 [e-clinic-api] › tests/api-tests/_shared/client.spec.ts:109:7 › Client API Tests @Sb721d58e › Add alert for client @T967882d6 (967ms)
+  ✓  178 [e-clinic-api] › tests/api-tests/_shared/task.spec.ts:60:7 › Task API Tests @S1ddd33dd › Delete Task @smoke @T8309d643 (481ms)
+  ✓  169 [e-clinic-api] › tests/api-tests/_shared/finances.spec.ts:143:7 › Add Charge Via Appointment @S102bbc4b › Edit Charge On Invoice @T61219eac (2.0s)
+  ✓  139 [e-clinic-api] › tests/api-tests/_shared/diary.spec.ts:47:7 › Diary API Tests @S8d0fc01a › Day diary schedule test - appointment is visible @T90ead795 (8.7s)
+  ✓  179 [e-clinic-api] › tests/api-tests/setup/documents.spec.ts:81:7 › Document Templates API Tests  @S24be7cb3 › Copy document template @Tbed6f3d7 (1.5s)
+  ✓  143 [e-clinic-api] › tests/api-tests/_shared/practitioner.spec.ts:41:7 › Practitioner API Tests @S84869fd6 › Edit Appointment @smoke @Tb41e0156 (8.6s)
+  ✓  180 [e-clinic-api] › tests/api-tests/_shared/client.spec.ts:123:7 › Client API Tests @Sb721d58e › Send form to client @Tdb28ae6d (1.9s)
+  ✓  181 [e-clinic-api] › tests/api-tests/setup/forms.spec.ts:17:7 › Form Settings @S061bbdc3 › Update Form Settings @T9b45977f (812ms)
+  ✓  187 [e-clinic-api] › tests/api-tests/setup/forms.spec.ts:57:7 › Form Template Management @Seb4b306b › Create & View Form Template @T22501406 (346ms)
+  ✓  188 [e-clinic-api] › tests/api-tests/setup/forms.spec.ts:70:7 › Form Template Management @Seb4b306b › Update Form Template @Ta72dcd5e (328ms)
+  ✓  189 [e-clinic-api] › tests/api-tests/setup/forms.spec.ts:77:7 › Form Template Management @Seb4b306b › Delete Form Template @T38dda112 (252ms)
+  ✓  190 [e-clinic-api] › tests/api-tests/setup/forms.spec.ts:84:7 › Form Template Management @Seb4b306b › Clone Form Template @Taf583c95 (448ms)
+  ✓  165 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:137:7 › Connect Category API @Se532cb20 › Arrange Category @Tbc7957d7 (7.8s)
+  ✓  186 [e-clinic-api] › tests/api-tests/_shared/client.spec.ts:141:7 › Client API Tests @Sb721d58e › Send email to client  @T6d6f9e28 (2.5s)
+  ✓  174 [tm3-api] › tests/api-tests/_shared/practitioner.spec.ts:113:7 › Practitioner API Tests @S84869fd6 › Appointment Arrived Booking Info @Tbac9451e (5.7s)
+  ✓  192 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:166:7 › Connect Category API @Se532cb20 › Nest Category @Tacd3b908 (654ms)
+  ✓  195 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:182:7 › Connect Category API @Se532cb20 › Delete category @Tfe62722f (499ms)
+  ✓  193 [e-clinic-api] › tests/api-tests/_shared/client.spec.ts:164:7 › Client API Tests @Sb721d58e › Send SMS to client @T51a1c035 (1.2s)
+  ✓  176 [tm3-api] › tests/api-tests/_shared/diary.spec.ts:201:7 › Diary API Tests @S8d0fc01a › Show weekends in weekly diary schedule @T57d38f2c (6.6s)
+  ✘  196 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:208:7 › Connect Service API @S77155a11 › Add Service (Appointment) @T2489d621 (312ms)
+  ✓  184 [e-clinic-api] › tests/api-tests/setup/location.spec.ts:6:7 › Location API Tests @S1b9cfa46 › Create Location and verify response @smoke @Tb68d2f17 (5.1s)
+  ✓  191 [e-clinic-api] › tests/api-tests/setup/packages.spec.ts:6:7 › Package API Tests @S3912edf5 › Create Package @smoke @Tca8522c5 (3.1s)
+  ✓  182 [e-clinic-api] › tests/api-tests/_shared/finances.spec.ts:240:7 › Invoice Wizard @S7dd3a528 › Generate Invoice @Td7430640 (6.2s)
+  ✓  201 [e-clinic-api] › tests/api-tests/setup/room.spec.ts:11:7 › Room API @S75e2a324 › Add Room @Ta4b5e363 (3.6s)
+  ✓  199 [e-clinic-api] › tests/api-tests/setup/location.spec.ts:26:7 › Location API Tests @S1b9cfa46 › Update Location and verify response @Tab7d8344 (4.5s)
+  ✓  194 [tm3-api] › tests/api-tests/_shared/practitioner.spec.ts:161:7 › Practitioner API Tests @S84869fd6 › Appointment No Show Status @T66da710e (6.2s)
+  ✓  200 [e-clinic-api] › tests/api-tests/setup/packages.spec.ts:14:7 › Package API Tests @S3912edf5 › Update Package @T18ca8e8c (4.5s)
+  ✓  202 [e-clinic-api] › tests/api-tests/setup/room.spec.ts:17:7 › Room API @S75e2a324 › Update Room @Te9f056b7 (564ms)
+  ✓  206 [e-clinic-api] › tests/api-tests/setup/room.spec.ts:28:7 › Room API @S75e2a324 › Search Room @Td4f35872 (260ms)
+  ✓  198 [tm3-api] › tests/api-tests/_shared/diary.spec.ts:240:7 › Diary API Tests @S8d0fc01a › Hide weekends in weekly diary schedule @T748594c1 (5.4s)
+  ✓  203 [e-clinic-api] › tests/api-tests/setup/stocks.spec.ts:12:7 › Stocks API Tests @Sda710bc9 › Create stock @smoke @Tb4831424 (659ms)
+  ✓  208 [e-clinic-api] › tests/api-tests/setup/tags.spec.ts:12:7 › User API Tests @S948946a3 › Create tag @Tffb6a325 (204ms)
+  ✓  211 [e-clinic-api] › tests/api-tests/setup/tags.spec.ts:22:7 › User API Tests @S948946a3 › Update tag @Tf0361ebf (391ms)
+  ✓  175 [e-clinic-api] › tests/api-tests/_shared/worktime.spec.ts:48:7 › Worktime API Tests @S1ddd33dd › Update Worktime @T77a26df5 (12.9s)
+  ✓  205 [e-clinic-api] › tests/api-tests/setup/packages.spec.ts:31:7 › Package API Tests @S3912edf5 › Add Bundle to Package @smoke @T31c10fc4 (1.2s)
+  ✓  210 [e-clinic-api] › tests/api-tests/setup/stocks.spec.ts:23:7 › Stocks API Tests @Sda710bc9 › Update stock @smoke @Td11ba8c0 (854ms)
+  ✓  212 [e-clinic-api] › tests/api-tests/setup/user.spec.ts:5:7 › User API Tests @S948946a3 › Create User @smoke @Tf707f334 (574ms)
+  ✓  207 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:208:7 › Connect Service API @S77155a11 › Add Service (Appointment) @T2489d621 (retry #1) (1.1s)
+  ✓  213 [e-clinic-api] › tests/api-tests/setup/user.spec.ts:14:7 › User API Tests @S948946a3 › Update User @smoke @T09d0426d (827ms)
+  ✓  214 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:223:7 › Connect Service API @S77155a11 › Edit Service (Appointment) @T868b3d63 (1.0s)
+  ✓  215 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:247:7 › Connect Service API @S77155a11 › Add Service (Class) @Tb24e3c13 (544ms)
+  ✓  183 [e-clinic-api] › tests/api-tests/_shared/diary.spec.ts:73:7 › Diary API Tests @S8d0fc01a › Week diary schedule test - appointment is visible @Tccfe50b5 (13.8s)
+  ✘  216 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:261:7 › Connect Service API @S77155a11 › Edit Service (Class) @T13e23367 (831ms)
+  ✓  197 [e-clinic-api] › tests/api-tests/setup/practitioner.spec.ts:5:7 › Practitioner Setup API Tests - Create Employee @S910eef47 › Create Employee @T3a011e65 (10.8s)
+  ✓  204 [tm3-api] › tests/api-tests/_shared/practitioner.spec.ts:204:7 › Practitioner API Tests @S84869fd6 › Appointment Complete Status @smoke @Tbc79fec8 (5.7s)
+  ✓  185 [e-clinic-api] › tests/api-tests/_shared/practitioner.spec.ts:63:7 › Practitioner API Tests @S84869fd6 › Delete Appointment @T3bcce848 (15.7s)
+  ✓  209 [tm3-api] › tests/api-tests/_shared/diary.spec.ts:274:7 › Diary API Tests @S8d0fc01a › Appointment Waiting List - Add @Tfa5d424d (6.3s)
+  ✓  217 [e-clinic-api] › tests/api-tests/_shared/diary.spec.ts:100:7 › Diary API Tests @S8d0fc01a › Diary list View schedule - appointment is visible @Taad0eed9 (5.9s)
+  ✓  218 [tm3-api] › tests/api-tests/_shared/practitioner.spec.ts:243:7 › Practitioner API Tests @S84869fd6 › Appointment Reschedule  @Tba76c2df (5.5s)
+  ✓  221 [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:261:7 › Connect Service API @S77155a11 › Edit Service (Class) @T13e23367 (retry #1) (1.0s)
+  ✓  219 [e-clinic-api] › tests/api-tests/_shared/practitioner.spec.ts:73:7 › Practitioner API Tests @S84869fd6 › Create Event @smoke @Tc47ae1dc (5.6s)
+  ✓  220 [tm3-api] › tests/api-tests/_shared/diary.spec.ts:284:7 › Diary API Tests @S8d0fc01a › Appointment Waiting List - Edit @Tfa5d424d (6.5s)
+  ✓  222 [e-clinic-api] › tests/api-tests/_shared/diary.spec.ts:130:7 › Diary API Tests @S8d0fc01a › Room view diary schedule - appointment is visible @T23a9d4ea (6.5s)
+  ✓  223 [e-clinic-api] › tests/api-tests/_shared/practitioner.spec.ts:84:7 › Practitioner API Tests @S84869fd6 › Edit Event @smoke @Te6e48a27 (5.8s)
+  ✓  224 [tm3-api] › tests/api-tests/_shared/diary.spec.ts:308:7 › Diary API Tests @S8d0fc01a › Appointment Waiting List - Delete @Tfa5d424d (5.6s)
+  ✓  225 [e-clinic-api] › tests/api-tests/_shared/diary.spec.ts:172:7 › Diary API Tests @S8d0fc01a › Show/Hide Cancellation @Ta724bd91 (6.5s)
+  ✓  226 [e-clinic-api] › tests/api-tests/_shared/practitioner.spec.ts:103:7 › Practitioner API Tests @S84869fd6 › Delete Event @smoke @T91779dac (6.1s)
+  ✓  227 [tm3-api] › tests/api-tests/_shared/diary.spec.ts:326:7 › Diary API Tests @S8d0fc01a › Course Waiting List - Add @Td217a2f3 (5.6s)
+  ✓  228 [e-clinic-api] › tests/api-tests/_shared/diary.spec.ts:201:7 › Diary API Tests @S8d0fc01a › Show weekends in weekly diary schedule @T57d38f2c (6.9s)
+  ✓  229 [e-clinic-api] › tests/api-tests/_shared/practitioner.spec.ts:113:7 › Practitioner API Tests @S84869fd6 › Appointment Arrived Booking Info @Tbac9451e (6.3s)
+  ✓  230 [tm3-api] › tests/api-tests/_shared/diary.spec.ts:336:7 › Diary API Tests @S8d0fc01a › Course Waiting List - Edit @Td217a2f3 (6.4s)
+  ✓  231 [e-clinic-api] › tests/api-tests/_shared/diary.spec.ts:240:7 › Diary API Tests @S8d0fc01a › Hide weekends in weekly diary schedule @T748594c1 (6.5s)
+  ✓  233 [tm3-api] › tests/api-tests/_shared/diary.spec.ts:362:7 › Diary API Tests @S8d0fc01a › Course Waiting List - Delete @Td217a2f3 (6.1s)
+  ✓  232 [e-clinic-api] › tests/api-tests/_shared/practitioner.spec.ts:161:7 › Practitioner API Tests @S84869fd6 › Appointment No Show Status @T66da710e (6.8s)
+  ✓  234 [e-clinic-api] › tests/api-tests/_shared/diary.spec.ts:274:7 › Diary API Tests @S8d0fc01a › Appointment Waiting List - Add @Tfa5d424d (6.0s)
+  ✓  235 [tm3-api] › tests/api-tests/_shared/diary.spec.ts:382:7 › Diary API Tests @S8d0fc01a › Class Waiting List - Add @Td217a2f5 (5.9s)
+  ✓  236 [e-clinic-api] › tests/api-tests/_shared/practitioner.spec.ts:204:7 › Practitioner API Tests @S84869fd6 › Appointment Complete Status @smoke @Tbc79fec8 (7.0s)
+  ✓  238 [tm3-api] › tests/api-tests/_shared/diary.spec.ts:392:7 › Diary API Tests @S8d0fc01a › Class Waiting List - Edit @Td217a2f5 (6.3s)
+  ✓  237 [e-clinic-api] › tests/api-tests/_shared/diary.spec.ts:284:7 › Diary API Tests @S8d0fc01a › Appointment Waiting List - Edit @Tfa5d424d (8.1s)
+  ✓  239 [e-clinic-api] › tests/api-tests/_shared/practitioner.spec.ts:243:7 › Practitioner API Tests @S84869fd6 › Appointment Reschedule  @Tba76c2df (7.6s)
+  ✓  240 [tm3-api] › tests/api-tests/_shared/diary.spec.ts:420:7 › Diary API Tests @S8d0fc01a › Class Waiting List - Delete @Td217a2f5 (6.2s)
+  ✓  241 [e-clinic-api] › tests/api-tests/_shared/diary.spec.ts:308:7 › Diary API Tests @S8d0fc01a › Appointment Waiting List - Delete @Tfa5d424d (6.1s)
+  ✓  242 [e-clinic-api] › tests/api-tests/_shared/diary.spec.ts:326:7 › Diary API Tests @S8d0fc01a › Course Waiting List - Add @Td217a2f3 (5.2s)
+  ✓  243 [e-clinic-api] › tests/api-tests/_shared/diary.spec.ts:336:7 › Diary API Tests @S8d0fc01a › Course Waiting List - Edit @Td217a2f3 (6.0s)
+  ✓  244 [e-clinic-api] › tests/api-tests/_shared/diary.spec.ts:362:7 › Diary API Tests @S8d0fc01a › Course Waiting List - Delete @Td217a2f3 (5.8s)
+  ✓  245 [e-clinic-api] › tests/api-tests/_shared/diary.spec.ts:382:7 › Diary API Tests @S8d0fc01a › Class Waiting List - Add @Td217a2f5 (5.7s)
+  ✓  246 [e-clinic-api] › tests/api-tests/_shared/diary.spec.ts:392:7 › Diary API Tests @S8d0fc01a › Class Waiting List - Edit @Td217a2f5 (5.9s)
+  ✓  247 [e-clinic-api] › tests/api-tests/_shared/diary.spec.ts:420:7 › Diary API Tests @S8d0fc01a › Class Waiting List - Delete @Td217a2f5 (5.8s)
+
+
+  1) [tm3-api] › tests/api-tests/_shared/nationwide.spec.ts:8:5 › should successfully upload, save, and confirm nationwide Excel price list @Tb0d9d90f 
+
+    Error: POST /api/json/reply/NationwideUploadSaveReq failed: {"responseStatus":{"errorCode":"NotImplementedException","message":"The operation does not exist for this service","errors":[]}}
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m204[39m
+    Received: [31m405[39m
+
+       at helpers/custom-assert.ts:86
+
+      84 |   endpoint: string
+      85 | ) {
+    > 86 |   expect(response.status(), `${method} ${endpoint} failed: ${await response.text()}`).toBe(
+         |                                                                                       ^
+      87 |     expectedStatus
+      88 |   );
+      89 | }
+        at checkStatus (/builds/bluezinc/core/e2e/helpers/custom-assert.ts:86:87)
+        at NationwideAPI.post (/builds/bluezinc/core/e2e/fixtures/API/baseAPI.ts:42:5)
+        at NationwideAPI.saveUploadExcel (/builds/bluezinc/core/e2e/fixtures/API/Core/submodules/nationwideAPI.ts:33:5)
+        at /builds/bluezinc/core/e2e/tests/api-tests/_shared/nationwide.spec.ts:26:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-output/tests-api-tests-_shared-na-09691--Excel-price-list-Tb0d9d90f-tm3-api/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-output/tests-api-tests-_shared-na-09691--Excel-price-list-Tb0d9d90f-tm3-api/trace.zip
+    Usage:
+
+        yarn playwright show-trace test-output/tests-api-tests-_shared-na-09691--Excel-price-list-Tb0d9d90f-tm3-api/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: POST /api/json/reply/NationwideUploadSaveReq failed: {"responseStatus":{"errorCode":"NotImplementedException","message":"The operation does not exist for this service","errors":[]}}
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m204[39m
+    Received: [31m405[39m
+
+       at helpers/custom-assert.ts:86
+
+      84 |   endpoint: string
+      85 | ) {
+    > 86 |   expect(response.status(), `${method} ${endpoint} failed: ${await response.text()}`).toBe(
+         |                                                                                       ^
+      87 |     expectedStatus
+      88 |   );
+      89 | }
+        at checkStatus (/builds/bluezinc/core/e2e/helpers/custom-assert.ts:86:87)
+        at NationwideAPI.post (/builds/bluezinc/core/e2e/fixtures/API/baseAPI.ts:42:5)
+        at NationwideAPI.saveUploadExcel (/builds/bluezinc/core/e2e/fixtures/API/Core/submodules/nationwideAPI.ts:33:5)
+        at /builds/bluezinc/core/e2e/tests/api-tests/_shared/nationwide.spec.ts:26:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-output/tests-api-tests-_shared-na-09691--Excel-price-list-Tb0d9d90f-tm3-api-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-output/tests-api-tests-_shared-na-09691--Excel-price-list-Tb0d9d90f-tm3-api-retry1/trace.zip
+    Usage:
+
+        yarn playwright show-trace test-output/tests-api-tests-_shared-na-09691--Excel-price-list-Tb0d9d90f-tm3-api-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [e-clinic-api] › tests/api-tests/_shared/client.spec.ts:22:7 › Client API Tests @Sb721d58e › Update Client  @smoke @T72251831 
+
+    Error: POST /api/json/reply/CustomerSaveRequest failed: {"responseStatus":{"errorCode":"Exception","message":"","errors":[]}}
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m200[39m
+    Received: [31m500[39m
+
+       at helpers/custom-assert.ts:86
+
+      84 |   endpoint: string
+      85 | ) {
+    > 86 |   expect(response.status(), `${method} ${endpoint} failed: ${await response.text()}`).toBe(
+         |                                                                                       ^
+      87 |     expectedStatus
+      88 |   );
+      89 | }
+        at checkStatus (/builds/bluezinc/core/e2e/helpers/custom-assert.ts:86:87)
+        at ClientsAPI.post (/builds/bluezinc/core/e2e/fixtures/API/baseAPI.ts:42:5)
+        at ClientsAPI.updateClientDetails (/builds/bluezinc/core/e2e/fixtures/API/Core/submodules/clientsAPI.ts:36:28)
+        at /builds/bluezinc/core/e2e/tests/api-tests/_shared/client.spec.ts:28:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-output/tests-api-tests-_shared-cl-b4973-date-Client-smoke-T72251831-e-clinic-api/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-output/tests-api-tests-_shared-cl-b4973-date-Client-smoke-T72251831-e-clinic-api/trace.zip
+    Usage:
+
+        yarn playwright show-trace test-output/tests-api-tests-_shared-cl-b4973-date-Client-smoke-T72251831-e-clinic-api/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: POST /api/json/reply/CustomerSaveRequest failed: {"responseStatus":{"errorCode":"Exception","message":"","errors":[]}}
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m200[39m
+    Received: [31m500[39m
+
+       at helpers/custom-assert.ts:86
+
+      84 |   endpoint: string
+      85 | ) {
+    > 86 |   expect(response.status(), `${method} ${endpoint} failed: ${await response.text()}`).toBe(
+         |                                                                                       ^
+      87 |     expectedStatus
+      88 |   );
+      89 | }
+        at checkStatus (/builds/bluezinc/core/e2e/helpers/custom-assert.ts:86:87)
+        at ClientsAPI.post (/builds/bluezinc/core/e2e/fixtures/API/baseAPI.ts:42:5)
+        at ClientsAPI.updateClientDetails (/builds/bluezinc/core/e2e/fixtures/API/Core/submodules/clientsAPI.ts:36:28)
+        at /builds/bluezinc/core/e2e/tests/api-tests/_shared/client.spec.ts:28:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-output/tests-api-tests-_shared-cl-b4973-date-Client-smoke-T72251831-e-clinic-api-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-output/tests-api-tests-_shared-cl-b4973-date-Client-smoke-T72251831-e-clinic-api-retry1/trace.zip
+    Usage:
+
+        yarn playwright show-trace test-output/tests-api-tests-_shared-cl-b4973-date-Client-smoke-T72251831-e-clinic-api-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [e-clinic-api] › tests/api-tests/_shared/nationwide.spec.ts:8:5 › should successfully upload, save, and confirm nationwide Excel price list @Tb0d9d90f 
+
+    Error: POST /api/json/reply/NationwideUploadSaveReq failed: {"responseStatus":{"errorCode":"NotImplementedException","message":"The operation does not exist for this service","errors":[]}}
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m204[39m
+    Received: [31m405[39m
+
+       at helpers/custom-assert.ts:86
+
+      84 |   endpoint: string
+      85 | ) {
+    > 86 |   expect(response.status(), `${method} ${endpoint} failed: ${await response.text()}`).toBe(
+         |                                                                                       ^
+      87 |     expectedStatus
+      88 |   );
+      89 | }
+        at checkStatus (/builds/bluezinc/core/e2e/helpers/custom-assert.ts:86:87)
+        at NationwideAPI.post (/builds/bluezinc/core/e2e/fixtures/API/baseAPI.ts:42:5)
+        at NationwideAPI.saveUploadExcel (/builds/bluezinc/core/e2e/fixtures/API/Core/submodules/nationwideAPI.ts:33:5)
+        at /builds/bluezinc/core/e2e/tests/api-tests/_shared/nationwide.spec.ts:26:3
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-output/tests-api-tests-_shared-na-09691--Excel-price-list-Tb0d9d90f-e-clinic-api/trace.zip
+    Usage:
+
+        yarn playwright show-trace test-output/tests-api-tests-_shared-na-09691--Excel-price-list-Tb0d9d90f-e-clinic-api/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: POST /api/json/reply/NationwideUploadSaveReq failed: {"responseStatus":{"errorCode":"NotImplementedException","message":"The operation does not exist for this service","errors":[]}}
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m204[39m
+    Received: [31m405[39m
+
+       at helpers/custom-assert.ts:86
+
+      84 |   endpoint: string
+      85 | ) {
+    > 86 |   expect(response.status(), `${method} ${endpoint} failed: ${await response.text()}`).toBe(
+         |                                                                                       ^
+      87 |     expectedStatus
+      88 |   );
+      89 | }
+        at checkStatus (/builds/bluezinc/core/e2e/helpers/custom-assert.ts:86:87)
+        at NationwideAPI.post (/builds/bluezinc/core/e2e/fixtures/API/baseAPI.ts:42:5)
+        at NationwideAPI.saveUploadExcel (/builds/bluezinc/core/e2e/fixtures/API/Core/submodules/nationwideAPI.ts:33:5)
+        at /builds/bluezinc/core/e2e/tests/api-tests/_shared/nationwide.spec.ts:26:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-output/tests-api-tests-_shared-na-09691--Excel-price-list-Tb0d9d90f-e-clinic-api-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-output/tests-api-tests-_shared-na-09691--Excel-price-list-Tb0d9d90f-e-clinic-api-retry1/trace.zip
+    Usage:
+
+        yarn playwright show-trace test-output/tests-api-tests-_shared-na-09691--Excel-price-list-Tb0d9d90f-e-clinic-api-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [tm3-api] › tests/api-tests/_shared/expenditure.spec.ts:29:7 › Expenditure API Tests @Sf1fa0c43 › Update Expenditure @T905de7a4 
+
+    Error: [2mexpect([22m[31m[31m{"amountExVAT": 164.61, "category": "Rent", "date": "2025-10-02T13:35:14.0000000", "description": "Updated Sleek Steel Tuna", "id": 601, "locationId": 4, "otherPaymentMethod": "Card", "reference": "SIDWYF", "total": 244.24, "vatAmount": 39.63, "vatRate": 18}[39m[31m[39m[2m).toMatchCommonFields([22m[32m[32m{"amountExVAT": 164.61, "category": "Rent", "description": "Updated Sleek Steel Tuna", "locationId": 4, "otherPaymentMethod": "Card", "recur": "Month", "recurFor": 1, "reference": "SIDWYF", "securityId": undefined, "total": 244.24, "vatAmount": 39.629999999999995, "vatRate": 18}[39m[32m[39m[2m)[22m
+
+    Common fields of objects do not match.
+    Common fields: description, reference, amountExVAT, vatRate, vatAmount, total, category, locationId, otherPaymentMethod
+    Differences:
+    [32m- Expected[39m
+    [31m+ Received[39m
+
+    [2m  Object {[22m
+    [2m    "amountExVAT": 164.61,[22m
+    [2m    "category": "Rent",[22m
+    [2m    "description": "Updated Sleek Steel Tuna",[22m
+    [2m    "locationId": 4,[22m
+    [2m    "otherPaymentMethod": "Card",[22m
+    [2m    "reference": "SIDWYF",[22m
+    [2m    "total": 244.24,[22m
+    [32m-   "vatAmount": 39.629999999999995,[39m
+    [31m+   "vatAmount": 39.63,[39m
+    [2m    "vatRate": 18,[22m
+    [2m  }[22m
+
+      50 |       total: Number(updatedExpenditure.total),
+      51 |       vatAmount: Number(updatedExpenditure.vatAmount)
+    > 52 |     }).toMatchCommonFields({
+         |        ^
+      53 |       ...expectedUpdatePayload,
+      54 |       total: Number(updatePayload.total),
+      55 |       vatAmount: Number(updatePayload.vatAmount)
+        at /builds/bluezinc/core/e2e/tests/api-tests/_shared/expenditure.spec.ts:52:8
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-output/tests-api-tests-_shared-ex-28620-pdate-Expenditure-T905de7a4-tm3-api/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-output/tests-api-tests-_shared-ex-28620-pdate-Expenditure-T905de7a4-tm3-api/trace.zip
+    Usage:
+
+        yarn playwright show-trace test-output/tests-api-tests-_shared-ex-28620-pdate-Expenditure-T905de7a4-tm3-api/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [tm3-api] › tests/api-tests/setup/documents.spec.ts:28:7 › Document Templates API Tests  @S24be7cb3 › Rename document template @T4b851bc1 › Expect "poll toBe" 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32mtrue[39m
+    Received: [31mfalse[39m
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      33 |
+      34 |     let updatedResponse;
+    > 35 |     await expect
+         |     ^
+      36 |       .poll(
+      37 |         async () => {
+      38 |           try {
+        at /builds/bluezinc/core/e2e/tests/api-tests/setup/documents.spec.ts:35:5
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-output/tests-api-tests-setup-docu-cfe01-document-template-T4b851bc1-tm3-api/trace.zip
+    Usage:
+
+        yarn playwright show-trace test-output/tests-api-tests-setup-docu-cfe01-document-template-T4b851bc1-tm3-api/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:208:7 › Connect Service API @S77155a11 › Add Service (Appointment) @T2489d621 
+
+    Error: GET /api/json/reply/GetCategoryAndServicesRequest failed: {"responseStatus":{"errorCode":"InvalidOperationException","message":"Invalid attempt to call CheckDataIsReady when reader is closed.","errors":[]}}
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m200[39m
+    Received: [31m500[39m
+
+       at helpers/custom-assert.ts:86
+
+      84 |   endpoint: string
+      85 | ) {
+    > 86 |   expect(response.status(), `${method} ${endpoint} failed: ${await response.text()}`).toBe(
+         |                                                                                       ^
+      87 |     expectedStatus
+      88 |   );
+      89 | }
+        at checkStatus (/builds/bluezinc/core/e2e/helpers/custom-assert.ts:86:87)
+        at ConnectAPI.get (/builds/bluezinc/core/e2e/fixtures/API/baseAPI.ts:30:5)
+        at Object.get (/builds/bluezinc/core/e2e/fixtures/API/Core/submodules/connectAPI.ts:70:24)
+        at /builds/bluezinc/core/e2e/tests/api-tests/setup/connect.spec.ts:217:29
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-output/tests-api-tests-setup-conn-cec66-rvice-Appointment-T2489d621-e-clinic-api/trace.zip
+    Usage:
+
+        yarn playwright show-trace test-output/tests-api-tests-setup-conn-cec66-rvice-Appointment-T2489d621-e-clinic-api/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:261:7 › Connect Service API @S77155a11 › Edit Service (Class) @T13e23367 
+
+    Error: GET /api/json/reply/GetCategoryAndServicesRequest failed: {"responseStatus":{"errorCode":"InvalidOperationException","message":"Invalid attempt to call CheckDataIsReady when reader is closed.","errors":[]}}
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m200[39m
+    Received: [31m500[39m
+
+       at helpers/custom-assert.ts:86
+
+      84 |   endpoint: string
+      85 | ) {
+    > 86 |   expect(response.status(), `${method} ${endpoint} failed: ${await response.text()}`).toBe(
+         |                                                                                       ^
+      87 |     expectedStatus
+      88 |   );
+      89 | }
+        at checkStatus (/builds/bluezinc/core/e2e/helpers/custom-assert.ts:86:87)
+        at ConnectAPI.get (/builds/bluezinc/core/e2e/fixtures/API/baseAPI.ts:30:5)
+        at Object.get (/builds/bluezinc/core/e2e/fixtures/API/Core/submodules/connectAPI.ts:70:24)
+        at /builds/bluezinc/core/e2e/tests/api-tests/setup/connect.spec.ts:278:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-output/tests-api-tests-setup-conn-85101-dit-Service-Class-T13e23367-e-clinic-api/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-output/tests-api-tests-setup-conn-85101-dit-Service-Class-T13e23367-e-clinic-api/trace.zip
+    Usage:
+
+        yarn playwright show-trace test-output/tests-api-tests-setup-conn-85101-dit-Service-Class-T13e23367-e-clinic-api/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [tm3-api] › tests/api-tests/_shared/nationwide.spec.ts:8:5 › should successfully upload, save, and confirm nationwide Excel price list @Tb0d9d90f 
+    [e-clinic-api] › tests/api-tests/_shared/client.spec.ts:22:7 › Client API Tests @Sb721d58e › Update Client  @smoke @T72251831 
+    [e-clinic-api] › tests/api-tests/_shared/nationwide.spec.ts:8:5 › should successfully upload, save, and confirm nationwide Excel price list @Tb0d9d90f 
+  4 flaky
+    [tm3-api] › tests/api-tests/_shared/expenditure.spec.ts:29:7 › Expenditure API Tests @Sf1fa0c43 › Update Expenditure @T905de7a4 
+    [tm3-api] › tests/api-tests/setup/documents.spec.ts:28:7 › Document Templates API Tests  @S24be7cb3 › Rename document template @T4b851bc1 
+    [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:208:7 › Connect Service API @S77155a11 › Add Service (Appointment) @T2489d621 
+    [e-clinic-api] › tests/api-tests/setup/connect.spec.ts:261:7 › Connect Service API @S77155a11 › Edit Service (Class) @T13e23367 
+  233 passed (3.0m)
+[TESTOMATIO] 🎞️  Uploading 10 files...
+[TESTOMATIO] 📊 Report Saved. Report URL: https://app.testomat.io/projects/health-api-test-automation/runs/43ae887a/report
+[TESTOMATIO] 🗄️ 17 artifacts privately 🟢uploaded to S3 bucket
+error Command failed with exit code 1.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+section_end:1759412276:step_script
+[0Ksection_start:1759412276:upload_artifacts_on_failure
+[0K[0K[36;1mUploading artifacts for failed job[0;m[0;m
+[32;1mUploading artifacts...[0;m
+e2e/test-output/: found 29 matching artifact files and directories[0;m 
+[0;33mWARNING: e2e/test-results/: no matching files. Ensure that the artifact path is relative to the working directory (/builds/bluezinc/core)[0;m 
+[0;33mWARNING: e2e/playwright-report/data/: no matching files. Ensure that the artifact path is relative to the working directory (/builds/bluezinc/core)[0;m 
+Uploading artifacts as "archive" to coordinator... 201 Created[0;m  id[0;m=533027 responseStatus[0;m=201 Created token[0;m=glcbt-64
+section_end:1759412277:upload_artifacts_on_failure
+[0Ksection_start:1759412277:cleanup_file_variables
+[0K[0K[36;1mCleaning up project directory and file based variables[0;m[0;m
+section_end:1759412278:cleanup_file_variables
+[0K[31;1mERROR: Job failed: exit code 1
+[0;m
